@@ -17,15 +17,14 @@ public class UserProjector {
                 userReadRepository.getUserContact(user.getUserId()))
                 .orElse(new UserContact());
 
-        Map<String, Set<Contact>> contactByType = new HashMap<>();
+        Map<String, Set<Contact>> contactsByType = new HashMap<>();
 
         for (Contact contact : user.getContacts()) {
             Set<Contact> contacts = Optional.ofNullable(
-                    contactByType.get(contact.getType()))
+                    contactsByType.get(contact.getType()))
                     .orElse(new HashSet<>());
             contacts.add(contact);
             contactsByType.put(contact.getType(), contacts);
-            )
         }
 
     }
